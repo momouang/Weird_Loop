@@ -159,6 +159,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.Momo.WeirdLoop
+    Standalone: com.Momo.Weird-Loop
   buildNumber:
     Standalone: 0
     VisionOS: 0
