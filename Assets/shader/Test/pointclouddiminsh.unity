@@ -327,6 +327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointCloudRenderer: {fileID: 615569840}
   decreaseRate: 0.005
+  minPointSize: 0.2
+  decreaseRateWhenSmall: 0.5
 --- !u!114 &615569844
 MonoBehaviour:
   m_ObjectHideFlags: 0
