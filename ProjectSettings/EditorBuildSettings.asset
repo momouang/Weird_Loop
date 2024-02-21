@@ -13,6 +13,9 @@ EditorBuildSettings:
     guid: e37809a736a1640318bd2e2f20bb0b2b
   - enabled: 1
     path: Assets/Scenes/Loop03.unity
+    guid: e961221308d4a574cb8a53a2f4cd4895
+  - enabled: 1
+    path: Assets/Scenes/Loop04.unity
     guid: f6208a107991f4cd88eecca560c2148d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d97553fe553754784995a81abda22f44, type: 2}
