@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
     public static Timer instance;
 
+    public FadeScreen fadeScreen;
+
     [SerializeField] TMP_Text timeText;
     [SerializeField] float remainingTime;
-
+    [SerializeField] AudioSource audioSource;
     public bool isFailed;
 
+    public int beepFrom = 5;
+    public int currentBeep = 5;
+
+    bool hasTimedUp = false;
 
 
     private void OnEnable()
@@ -23,8 +30,6 @@ public class Timer : MonoBehaviour
     {
         HeadsetTrigger.OnAddTime -= TimeIncreases;
     }
-
-
 
     private void Awake()
     {
@@ -51,8 +56,20 @@ public class Timer : MonoBehaviour
         }
         else if (remainingTime < 0)
         {
+            if (hasTimedUp)
+                return;
+
+            hasTimedUp = true;
+            StartCoroutine(TimeUp());
             remainingTime = 0;
             isFailed = true;
+        }
+
+        if((int)remainingTime == currentBeep)
+        {
+            currentBeep -= 1;
+            Debug.Log("Test");
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 
@@ -63,8 +80,16 @@ public class Timer : MonoBehaviour
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    IEnumerator TimeUp()
+    {
+        fadeScreen.FadeOut();
+        yield return new WaitForSeconds(fadeScreen.fadeDuration);
+        SceneManager.LoadScene("Intro");
+    }
+
     void TimeIncreases()
     {
-        remainingTime += 30;
+        remainingTime += 20;
+        currentBeep = beepFrom;
     }
 }
